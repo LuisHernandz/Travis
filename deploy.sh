@@ -1,3 +1,5 @@
 # deploy.sh
 # Cambia FTP_ADDRESS con tu servidor y ruta correctos
-find . -type f -exec curl -u $FTP_USER:$FTP_PASS --ftp-create-dirs -T {} --max-time 300 ftp://195.179.238.210/travis2/{} \;
+
+curl --keepalive-time 60 -u u325260710:Ftp123** --ftp-create-dirs -T README.md ftp://195.179.238.210/domains/luishs.com/public_html/travis2/README.md
+

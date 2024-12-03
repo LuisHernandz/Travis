@@ -57,6 +57,18 @@ return [
             'throw' => false,
         ],
 
+        'ftp' => [
+            'driver' => 'ftp',
+            'host' => env('FTP_HOST'),
+            'username' => env('FTP_USERNAME'),
+            'password' => env('FTP_PASSWORD'),
+    
+            // Opcional: Ajusta el puerto y otras configuraciones si es necesario.
+            'port' => env('FTP_PORT', 21),
+            'root' => '', // Ruta inicial en el servidor FTP (deja vacío para usar la raíz)
+            'timeout' => 30,
+        ],
+
     ],
 
     /*

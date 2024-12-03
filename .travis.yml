@@ -29,7 +29,8 @@ deploy:
     echo "Starting deployment"
     echo "FTP_SERVER: $FTP_SERVER"
     echo "FTP_USERNAME: $FTP_USERNAME"
-    lftp -e "set ftp:ssl-force false; set ssl:verify-certificate false; mirror -R ./public /domains/luishs.com/public_html/travis2; quit" -u $FTP_USERNAME,$FTP_PASSWORD, $FTP_SERVER
+    lftp -e "set ftp:ssl-force false; set ssl:verify-certificate false; mirror -R ./public /domains/luishs.com/public_html/travis2; quit" -u u325260710,$FTP_PASSWORD ftp://195.179.238.210
+
     echo "Deployment finished"
   skip_cleanup: true
   on:

@@ -17,14 +17,10 @@ before_script:
  - php artisan migrate
  - npm install
  - npm run build
- - sudo apt-get install lftp
+ - chmod +x deploy.sh
 
 script:
  - vendor/bin/phpunit
-
-deploy:
-  provider: script
-  skip_cleanup: true
-  script: bash deploy.sh
-  on:
-    branch: main
+ 
+after_success:
+  - ./deploy.sh

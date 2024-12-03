@@ -17,17 +17,20 @@ before_script:
  - php artisan migrate
  - npm install
  - npm run build
- 
+ - sudo apt-get update
+ - sudo apt-get install -y lftp
 
 script:
  - vendor/bin/phpunit
 
+
+
 deploy:
-  provider: ftp
-  username: $FTP_USERNAME
-  password: $FTP_PASSWORD
-  server: $FTP_HOST
-  local-dir: ./public  # Puedes cambiar esto si necesitas desplegar otros directorios como 'public_html'
-  remote-dir: /luishs.com/public_html/travis2  # Ruta en tu servidor donde se subirán los archivos
+  provider: script
+  script: |
+    echo "Starting deployment"
+    lftp -e "mirror -R ./public /luishs.com/public_html/travis2; quit" -u $FTP_USERNAME,$FTP_PASSWORD $FTP_SERVER || { echo "Deployment failed"; exit 1; }
+    echo "Deployment finished"
+  skip_cleanup: true
   on:
-    branch: main 
+    branch: main

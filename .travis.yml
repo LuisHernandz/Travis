@@ -20,3 +20,13 @@ before_script:
 
 script:
  - vendor/bin/phpunit
+
+deploy:
+  provider: ftp
+  username: $FTP_USERNAME
+  password: $FTP_PASSWORD
+  server: $FTP_HOST
+  local-dir: ./public  # Puedes cambiar esto si necesitas desplegar otros directorios como 'public_html'
+  remote-dir: /domains/luishs.com/public_html/travis2  # Ruta en tu servidor donde se subirán los archivos
+  on:
+    branch: main 

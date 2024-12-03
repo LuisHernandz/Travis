@@ -29,6 +29,6 @@ deploy:
     echo "Starting deployment"
     lftp -e "mirror -R ./public /luishs.com/public_html/travis2; quit" -u $FTP_USERNAME,$FTP_PASSWORD $FTP_SERVER
     echo "Deployment finished"
-  skip_cleanup: true
+  skip_cleanup: true 
   on:
     branch: main 

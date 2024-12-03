@@ -17,20 +17,14 @@ before_script:
  - php artisan migrate
  - npm install
  - npm run build
- - sudo apt-get update
- - sudo apt-get install -y lftp
+ - sudo apt-get install lftp
 
 script:
  - vendor/bin/phpunit
 
 deploy:
   provider: script
-  script: |
-    echo "Starting deployment"
-    echo "FTP_SERVER: $FTP_SERVER"
-    echo "FTP_USERNAME: $FTP_USERNAME"
-    lftp -e "set ftp:ssl-force false; set ssl:verify-certificate false; mirror -R ./public /domains/luishs.com/public_html/travis2; quit" -u u325260710,$FTP_PASSWORD ftp://195.179.238.210
-    echo "Deployment finished"
   skip_cleanup: true
+  script: bash deploy.sh
   on:
     branch: main

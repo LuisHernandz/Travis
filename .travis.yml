@@ -29,7 +29,9 @@ deploy:
   provider: script
   script: |
     echo "Starting deployment"
-    lftp -e "mirror -R ./public /luishs.com/public_html/travis2; quit" -u $FTP_USERNAME,$FTP_PASSWORD $FTP_SERVER || { echo "Deployment failed"; exit 1; }
+    echo "FTP_SERVER: $FTP_SERVER"
+    echo "FTP_USERNAME: $FTP_USERNAME"
+    lftp -e "mirror -R ./public /domains/luishs.com/public_html/travis2; quit" -u $FTP_USERNAME,$FTP_PASSWORD $FTP_SERVER || { echo "Deployment failed"; exit 1; }
     echo "Deployment finished"
   skip_cleanup: true
   on:
